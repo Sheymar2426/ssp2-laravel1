@@ -31,7 +31,7 @@
             </div>
 
             <!-- Search Bar -->
-            <form method="GET" action="{{ route('products.index') }}" class="hidden md:flex items-center w-1/3">
+            <form method="GET" action="{{ route('home') }}" class="hidden md:flex items-center w-1/3">
                 <input type="text" name="search" placeholder="Search products..."
                        class="w-full px-3 py-2 rounded-l-full border border-gray-300 focus:outline-none"
                        value="{{ request('search') }}" />
@@ -42,7 +42,7 @@
 
             <!-- Right Side -->
             <div class="flex items-center space-x-4">
-                <a href="{{ route('orders.track') }}" class="text-white hover:text-gray-200">Track Your Order</a>
+                <a href= # class="text-white hover:text-gray-200">Track Your Order</a>
                 <a href="{{ route('logout') }}" 
                    class="bg-blue-700 text-white px-4 py-2 rounded hover:bg-blue-800"
                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
@@ -54,7 +54,7 @@
                 </form>
 
                 <!-- Cart Icon -->
-                <a href="{{ route('cart.index') }}" class="relative text-white hover:text-gray-200">
+                <a href=# class="relative text-white hover:text-gray-200">
                     <i class="fas fa-shopping-cart fa-lg"></i>
                     <span class="absolute -top-2 -right-2 bg-red-600 text-white text-xs px-1.5 py-0.5 rounded-full">
                         {{ session('cart_count', 0) }}
@@ -82,11 +82,11 @@
                 </button>
                 <div class="absolute left-0 mt-2 w-40 bg-blue-600 text-white border rounded-lg shadow-lg 
                             opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
-                    <a href="{{ route('products.category', 'cats') }}" class="block px-4 py-2 hover:bg-blue-700">Cats</a>
-                    <a href="{{ route('products.category', 'dogs') }}" class="block px-4 py-2 hover:bg-blue-700">Dogs</a>
-                    <a href="{{ route('products.category', 'fish') }}" class="block px-4 py-2 hover:bg-blue-700">Fish</a>
-                    <a href="{{ route('products.category', 'birds') }}" class="block px-4 py-2 hover:bg-blue-700">Birds</a>
-                </div>
+                    <a href="{{ url('/customer/cats') }}" class="block px-4 py-2 hover:bg-blue-700">Cats</a>
+                    <a href="{{ url('/customer/dogs') }}" class="block px-4 py-2 hover:bg-blue-700">Dogs</a>
+                    <a href="{{ url('/customer/fish') }}" class="block px-4 py-2 hover:bg-blue-700">Fish</a>
+                    <a href="{{ url('/customer/birds') }}" class="block px-4 py-2 hover:bg-blue-700">Birds</a>
+
             </div>
 
             <div class="relative group">
@@ -99,10 +99,10 @@
                 </button>
                 <div class="absolute left-0 mt-2 w-48 bg-blue-600 text-white border rounded-lg shadow-lg 
                             opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
-                    <a href="{{ route('learning.animalCare') }}" class="block px-4 py-2 hover:bg-blue-700">Animal Care</a>
-                    <a href="{{ route('learning.training') }}" class="block px-4 py-2 hover:bg-blue-700">Training</a>
-                    <a href="{{ route('learning.nutrition') }}" class="block px-4 py-2 hover:bg-blue-700">Nutrition</a>
-                    <a href="{{ route('learning.behavior') }}" class="block px-4 py-2 hover:bg-blue-700">Behavior</a>
+                    <a href="{{ route('customer.animal-care') }}" class="block px-4 py-2 hover:bg-blue-700">Animal Care</a>
+                    <a href="{{ route('customer.training') }}" class="block px-4 py-2 hover:bg-blue-700">Training</a>
+                    <a href="{{ route('customer.nutrition') }}" class="block px-4 py-2 hover:bg-blue-700">Nutrition</a>
+                    <a href="{{ route('customer.behavior') }}" class="block px-4 py-2 hover:bg-blue-700">Behavior</a>
                 </div>
             </div>
 
@@ -119,7 +119,7 @@
 <footer class="bg-blue-200 border-t mt-16">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 grid grid-cols-1 md:grid-cols-4 gap-8">
         
-       <!-- About -->
+        <!-- About -->
         <a href="{{ route('about') }}" class="text-gray-600 text-sm hover:underline">
             Learn more about us
         </a>
