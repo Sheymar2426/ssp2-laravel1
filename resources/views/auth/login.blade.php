@@ -26,7 +26,7 @@
 
         <div class="flex items-center justify-between mb-4">
             <label class="flex items-center">
-                <x-checkbox name="remember" />
+                <x-checkbox name="remember" value="1" />
                 <span class="ml-2 text-sm text-gray-600">Remember me</span>
             </label>
 

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Product;
+use App\Models\Order;
 
 class AdminController extends Controller
 {
@@ -57,9 +58,18 @@ public function storeProduct(Request $request) {
     return redirect()->route('admin.products')->with('success', 'Product added successfully!');
 }
 
+public function showOrders()
+{
+    $orders = Order::with('items')
+        ->orderBy('OrderDate', 'desc')
+        ->paginate(20); // only 20 orders per page
+    return view('admin.orders', compact('orders'));
+}
+
 public function showDashboard()
 {
     return view('admin.dashboard');
 }
 
 }
+

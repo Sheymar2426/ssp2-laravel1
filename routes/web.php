@@ -83,6 +83,8 @@ Route::middleware(['auth', config('jetstream.auth_session'), 'verified'])->group
 
 });
 
+Route::post('/checkout/confirm', [CartController::class,'confirmCheckout'])->name('checkout.confirm');
+
 Route::get('/customer/pharmacy', [PharmacyController::class, 'index'])->name('customer.pharmacy');
 
 // Admin

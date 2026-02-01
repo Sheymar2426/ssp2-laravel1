@@ -38,29 +38,35 @@ class CartController extends Controller
         return redirect()->route('cart');
     }
 
-    public function confirmCheckout(Request $request)
-    {
-        $cart = session('cart', []);
-        if (empty($cart)) return redirect()->route('cart')->with('error','Cart is empty');
+   public function confirmCheckout(Request $request)
+{
+    $cart = session('cart', []);
 
-        $total = collect($cart)->sum(fn($i) => $i['price'] * $i['quantity']);
-
-        $order = Order::create([
-            'CustId' => session('user_id'),
-            'TotalAmount' => $total,
-            'Status' => 'Pending',
-            'PaymentId' => null
-        ]);
-
-        foreach ($cart as $item) {
-            $order->items()->create([
-                'ProductId' => $item['id'],
-                'Quantity' => $item['quantity'],
-                'Price' => $item['price'],
-            ]);
-        }
-
-        session()->forget('cart');
-        return redirect()->route('home')->with('success','Order placed successfully');
+    if (empty($cart)) {
+        return redirect()->route('cart')->with('error','Your cart is empty.');
     }
+
+    $total = collect($cart)->sum(fn($item) => $item['price'] * $item['quantity']);
+
+    $order = Order::create([
+        'CustomerId' => auth()->id(), // logged-in user
+        'TotalAmount' => $total,
+        'Status' => 'Pending',
+        'OrderDate' => now(),
+    ]);
+
+    foreach ($cart as $item) {
+        $order->items()->create([
+            'ProductId' => $item['id'],
+            'Quantity' => $item['quantity'],
+            'Price' => $item['price'],
+        ]);
+    }
+
+    // Clear cart
+    session()->forget('cart');
+
+    return redirect()->route('checkout')->with('success','Order placed successfully!');
+}
+
 }

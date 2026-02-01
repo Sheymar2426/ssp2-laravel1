@@ -17,3 +17,4 @@ class CheckoutController extends Controller
         return view('customer.checkout_success');
     }
 }
+
