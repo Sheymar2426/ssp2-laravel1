@@ -1,8 +1,8 @@
-@extends('layouts.app')
+@extends('layouts.master')
 
 @section('content')
 <!-- HERO SECTION -->
-<section class="bg-blue-900 text-white py-10 mt-6">
+<section class="bg-blue-900 text-white py-12 mt-4">
     <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 items-center gap-6 px-4">
         <div class="text-center md:text-left">
             <h2 class="text-3xl font-semibold">WELCOME TO PET PAL HUB</h2>
@@ -11,9 +11,9 @@
             </p>
         </div>
         <div class="flex justify-center">
-            <img src="{{ asset('images/products/hero.jpg') }}" 
+            <img src="{{ asset('images/hero.jpg') }}" 
                  alt="Sleeping Pets"
-                 class="mx-auto w-200 h-160 object-cover rounded shadow-lg" />
+                 class="mx-auto w-150 h-80 object-cover rounded shadow-lg" />
         </div>
     </div>
 </section>
@@ -30,12 +30,12 @@
     <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 px-4">
         <div class="bg-blue-900 p-5 rounded-lg text-white text-center">
             <h3 class="text-xl font-bold mb-3">DOG FOOD</h3>
-            <img src="{{ asset('images/products/pedigree_adult.jpg') }}" class="mx-auto w-60 h-50 object-cover rounded">
+            <img src="{{ asset('images/drools_chicken_rice.jpg') }}" class="mx-auto w-60 h-50 object-cover rounded">
             <p class="mt-4 text-sm">20% on all orders above LKR.5000</p>
         </div>
         <div class="bg-blue-900 p-5 rounded-lg text-white text-center">
             <h3 class="text-xl font-bold mb-3">CAT FOOD</h3>
-            <img src="{{ asset('images/products/whiskas_dry.jpg') }}" class="mx-auto w-60 h-50 object-cover rounded">
+            <img src="{{ asset('images/whiskas_dry.jpg') }}" class="mx-auto w-60 h-50 object-cover rounded">
             <p class="mt-4 text-sm">Special offers</p>
         </div>
     </div>
@@ -68,11 +68,11 @@
     <h2 class="text-center text-xl font-bold mb-6">CONVENIENT WAYS TO SHOP</h2>
     <div class="grid grid-cols-1 md:grid-cols-2 gap-10 max-w-6xl mx-auto px-4">
         <div class="text-center">
-            <img src="{{ asset('images/products/cartoon1.jpg') }}" class="mx-auto w-40">
+            <img src="{{ asset('images/cartoon1.jpg') }}" class="mx-auto w-40">
             <p class="mt-3 font-semibold">Same Day Delivery</p>
         </div>
         <div class="text-center">
-            <img src="{{ asset('images/products/fast-delivery.png') }}" class="mx-auto w-40">
+            <img src="{{ asset('images/fast-delivery.png') }}" class="mx-auto w-40">
             <p class="mt-3 font-semibold">Ship to your home (2–3 days)</p>
         </div>
     </div>

@@ -16,22 +16,25 @@ return new class extends Migration
     $table->string('Name');
     $table->text('Description')->nullable();
     $table->decimal('Price', 10, 2);
-    $table->integer('Stock');
-    $table->unsignedBigInteger('CategoryId');
-    $table->unsignedBigInteger('SubCategoryId')->nullable();
-    $table->string('Image')->nullable();
+    $table->integer('Stock')->default(0);
 
-    $table->foreign('CategoryId')->references('CategoryId')->on('category');
-    $table->foreign('SubCategoryId')->references('SubCategoryId')->on('subcategories');
+    $table->unsignedBigInteger('CategoryId');
+    $table->foreign('CategoryId')
+          ->references('CategoryId')
+          ->on('category')
+          ->onDelete('cascade');
+
+    $table->unsignedBigInteger('SubCategoryId');
+    $table->foreign('SubCategoryId')
+          ->references('SubcategoryId')
+          ->on('subcategories')
+          ->onDelete('cascade');
+
+    $table->string('Image')->nullable(); // ✅ add this
+
+    $table->timestamps();
 });
 
     }
-
-    /**
-     * Reverse the migrations.
-     */
-    public function down(): void
-    {
-        Schema::dropIfExists('products');
-    }
 };
+

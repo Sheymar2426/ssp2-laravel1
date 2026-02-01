@@ -2,33 +2,27 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
 {
-    protected $table = 'product';
-    protected $primaryKey = 'ProductId';
-    public $timestamps = false;
+    use HasFactory;
 
+    protected $table = 'product';         // your table name
+    protected $primaryKey = 'ProductId';  // your PK
+    public $timestamps = false;           // if your table doesn't have created_at/updated_at
     protected $fillable = [
-        'Name',
-        'CategoryId',
-        'SubCategoryId',
-        'Description',
-        'Price',
-        'Stock',
-        'Image'
+        'Name', 'Price', 'Stock', 'Image', 'CategoryId', 'SubCategoryId'
     ];
 
-    // Relationship: Product belongs to Category
     public function category()
     {
         return $this->belongsTo(Category::class, 'CategoryId', 'CategoryId');
     }
 
-    // Relationship: Product belongs to SubCategory
     public function subcategory()
     {
-        return $this->belongsTo(SubCategory::class, 'SubCategoryId', 'SubCategoryId');
+        return $this->belongsTo(\App\Models\SubCategory::class, 'SubCategoryId', 'SubCategoryId');
     }
 }

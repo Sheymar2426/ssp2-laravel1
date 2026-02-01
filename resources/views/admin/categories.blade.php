@@ -28,10 +28,10 @@
             <tbody>
                 @forelse($categories as $category)
                 <tr class="hover:bg-gray-50">
-                    <form method="POST" action="{{ route('admin.categories.update', $category->id) }}" class="contents">
+                    <form method="POST" action="{{ route('admin.categories.update', $category->CategoryId) }}" class="contents">
                         @csrf
                         @method('PUT')
-                        <td class="px-4 py-2 border">{{ $category->id }}</td>
+                        <td class="px-4 py-2 border">{{ $category->CategoryId }}</td>
                         <td class="px-4 py-2 border">
                             <input type="text" name="CategoryName" value="{{ $category->CategoryName }}" class="border rounded px-2 py-1 w-full">
                         </td>
@@ -39,7 +39,7 @@
                         <td class="px-4 py-2 border flex gap-2">
                             <button type="submit" class="bg-blue-600 text-white px-3 py-1 rounded hover:bg-blue-700">Update</button>
                     </form>
-                    <form method="POST" action="{{ route('admin.categories.destroy', $category->id) }}">
+                    <form method="POST" action="{{ route('admin.categories.destroy', $category->CategoryId) }}">
                         @csrf
                         @method('DELETE')
                         <button type="submit" class="bg-red-600 text-white px-3 py-1 rounded hover:bg-red-700" onclick="return confirm('Delete this category?')">Delete</button>

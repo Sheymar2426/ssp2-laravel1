@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.master')
 
 @section('content')
 <div class="pharmacy-page">
@@ -22,17 +22,17 @@
 
     <!-- Products Grid -->
     <section class="max-w-6xl mx-auto mt-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 px-4">
-        @if(!empty($products))
+        @if($products->count() > 0)
             @foreach($products as $product)
                 <div class="bg-white shadow-md rounded-lg p-4 hover:shadow-lg transition flex flex-col">
-                    <img src="{{ asset($product['Image']) }}" alt="{{ $product['Name'] }}" class="h-40 w-full object-cover rounded">
-                    <h3 class="mt-4 text-lg font-semibold text-gray-800">{{ $product['Name'] }}</h3>
-                    <p class="text-sm text-gray-600 mt-1">{{ $product['Description'] }}</p>
-                    <p class="mt-2 font-bold text-blue-600">Rs. {{ $product['Price'] }}</p>
+                <img src="{{ asset($product->Image) }}" alt="{{ $product->Name }}" class="h-40 w-full object-cover rounded">
+                <h3 class="mt-4 text-lg font-semibold text-gray-800">{{ $product->Name }}</h3>
+                    <p class="text-sm text-gray-600 mt-1">{{ $product->Description }}</p>
+                    <p class="mt-2 font-bold text-blue-600">Rs. {{ $product->Price }}</p>
 
                     <form method="POST" action="{{ url('cart/add') }}" class="mt-auto">
                         @csrf
-                        <input type="hidden" name="product_id" value="{{ $product['ProductId'] }}">
+                        <input type="hidden" name="product_id" value="{{ $product->PharmacyId }}">
                         <button type="submit" class="w-full mt-3 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
                             Add to Cart
                         </button>

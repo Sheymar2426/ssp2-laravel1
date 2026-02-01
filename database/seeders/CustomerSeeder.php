@@ -2,16 +2,18 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use App\Models\Customer;
 
 class CustomerSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     */
-    public function run(): void
+    public function run()
     {
-        //
+    Customer::create([
+            'Name' => 'Sheyma',
+            'Email' => 'sheyma.unique@example.com', // new unique email
+            'Phone' => '0771234567',
+            'Address' => 'Colombo, Sri Lanka',
+        ]);
     }
 }

@@ -7,23 +7,18 @@ use Illuminate\Database\Eloquent\Model;
 class SubCategory extends Model
 {
     protected $table = 'subcategories';
-    protected $primaryKey = 'SubCategoryId';
-    public $timestamps = true;
+    protected $primaryKey = 'SubcategoryId'; // ✅ FIXED (small c)
+
+    public $incrementing = true;
+    protected $keyType = 'int';
 
     protected $fillable = [
-        'SubCategoryName',
+        'SubcategoryName', // ✅ FIXED
         'CategoryId'
     ];
 
-    // Relationship: SubCategory belongs to Category
-    public function category()
-    {
-        return $this->belongsTo(Category::class, 'CategoryId', 'CategoryId');
-    }
-
-    // Relationship: SubCategory has many products
-    public function products()
-    {
-        return $this->hasMany(Product::class, 'SubCategoryId', 'SubCategoryId');
-    }
+    public $timestamps = true; // you DO have timestamps
 }
+
+
+

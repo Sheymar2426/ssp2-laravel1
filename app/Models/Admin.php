@@ -2,10 +2,13 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Laravel\Sanctum\HasApiTokens;
 
-class Admin extends Model
+class Admin extends Authenticatable
 {
+    use HasApiTokens;
+
     protected $table = 'admin';
     protected $primaryKey = 'AdminId';
     public $timestamps = false;
@@ -17,6 +20,12 @@ class Admin extends Model
     ];
 
     protected $hidden = [
-        'Password'
+        'Password',
+        'remember_token',
+    ];
+
+    // If your passwords are hashed, tell Laravel which field to use
+    protected $casts = [
+        'Password' => 'hashed',
     ];
 }

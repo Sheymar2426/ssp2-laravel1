@@ -10,15 +10,11 @@ return new class extends Migration
      * Run the migrations.
      */
     public function up(): void
-    {
-        Schema::create('customer', function (Blueprint $table) {
-    $table->id('CustomerId');
-    $table->string('Name');
-    $table->string('Email')->unique();
-    $table->string('Phone')->nullable();
-    $table->string('Address')->nullable();
+    {Schema::create('category', function (Blueprint $table) {
+    $table->id('CategoryId');
+    $table->string('CategoryName');
+    $table->timestamps();
 });
-
     }
 
     /**
@@ -26,6 +22,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('customers');
+        Schema::dropIfExists('category');
     }
 };

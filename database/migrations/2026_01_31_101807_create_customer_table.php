@@ -11,13 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('admin', function (Blueprint $table) {
-    $table->id('AdminId');
+        Schema::create('customer', function (Blueprint $table) {
+    $table->id('CustomerId');
     $table->string('Name');
     $table->string('Email')->unique();
-    $table->string('Password');
-    $table->string('Role')->default('admin'); // optional if you use roles
+    $table->string('Phone')->nullable();
+    $table->string('Address')->nullable();
+    $table->timestamps();
 });
+
     }
 
     /**
@@ -25,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('admin');
+        Schema::dropIfExists('customer');
     }
 };

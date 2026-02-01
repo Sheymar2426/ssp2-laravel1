@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.master')
 
 @section('content')
 <section class="relative bg-gray-100">
@@ -9,7 +9,7 @@
                 <h2 class="text-2xl font-bold mb-2">Proper diet for happy pets</h2>
                 <p class="text-gray-200">Discover the best nutrition practices to keep your pets healthy and full of energy.</p>
             </div>
-            <img src="{{ asset('images/products/n2.jpeg') }}" alt="Nutrition" class="rounded-xl shadow-md">
+            <img src="{{ asset('images/n2.jpeg') }}" alt="Nutrition" class="rounded-xl shadow-md">
         </div>
     </div>
 </section>

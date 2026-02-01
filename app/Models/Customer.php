@@ -9,7 +9,7 @@ class Customer extends Model
 {
     protected $table = 'customer';
     protected $primaryKey = 'CustId';
-    public $timestamps = true; // assumes you have created_at / updated_at
+    public $timestamps = false; // assumes you have created_at / updated_at
 
     protected $fillable = [
         'Name',
@@ -47,3 +47,4 @@ class Customer extends Model
         ];
     }
 }
+
