@@ -27,23 +27,30 @@
             <td class="px-4 py-2 border">{{ $p->Name }}</td>
             <td class="px-4 py-2 border">{{ $p->Price }}</td>
             <td class="px-4 py-2 border">{{ $p->Stock }}</td>
-            <td class="px-4 py-2 border">{{ $p->category->CategoryName ?? 'N/A' }}</td>
-            <td class="px-4 py-2 border">{{ $p->subcategory->SubCategoryName ?? 'N/A' }}</td>
-            <td class="px-4 py-2 border">
+            <td class="px-4 py-2 border">{{ $p->category ? $p->category->CategoryName : 'N/A' }}</td>
+<td class="px-4 py-2 border">{{ $p->subcategory ? $p->subcategory->SubCategoryName : 'N/A' }}</td>
+            <!-- <td class="px-4 py-2 border">
                 @if($p->Image)
                     <img src="{{ asset('storage/'.$p->Image) }}" class="w-16 h-16 object-cover">
                 @else
                     No Image
                 @endif
-            </td>
-            <td class="px-4 py-2 border flex gap-2">
-                <a href="{{ route('admin.products.edit', $p->ProductId) }}" class="bg-blue-600 text-white px-3 py-1 rounded hover:bg-blue-700">Edit</a>
+            </td> -->
 
-                <form method="POST" action="{{ route('admin.products.delete', $p->ProductId) }}">
-                    @csrf
-                    @method('DELETE')
-                    <button type="submit" class="bg-red-600 text-white px-3 py-1 rounded hover:bg-red-700" onclick="return confirm('Delete this product?')">Delete</button>
-                </form>
+            <td class="px-4 py-2 border">Image</td>
+
+            <td class="px-4 py-2 border flex gap-2">
+                <a href="{{ route('admin.products.edit', ['ProductId' => $p->ProductId]) }}" class="bg-blue-600 text-white px-3 py-1 rounded hover:bg-blue-700">Edit</a>
+
+                <form method="POST" action="{{ route('admin.products.delete', ['ProductId' => $p->ProductId]) }}">
+    @csrf
+    @method('DELETE')
+    <button type="submit" class="bg-red-600 text-white px-3 py-1 rounded hover:bg-red-700"
+        onclick="return confirm('Delete this product?')">
+        Delete
+    </button>
+</form>
+
             </td>
         </tr>
         @empty
@@ -51,4 +58,5 @@
         @endforelse
     </tbody>
 </table>
+
 @endsection

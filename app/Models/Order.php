@@ -12,7 +12,7 @@ class Order extends Model
 
     public function items()
     {
-        // Specify foreign key and local key
+        
         return $this->hasMany(OrderItem::class, 'OrderId', 'OrderId');
     }
 }

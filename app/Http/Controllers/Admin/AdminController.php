@@ -9,18 +9,18 @@ use App\Models\Order;
 
 class AdminController extends Controller
 {
-    public function showProducts()
-    {
-        // Eager load only the necessary columns
-        $products = Product::with([
-            'category:CategoryId,CategoryName',
-            'subcategory:SubCategoryId,SubCategoryName'
-        ])->get([
-            'ProductId','Name','Price','Stock','Image','CategoryId','SubCategoryId'
-        ]);
+   public function showProducts()
+{
+    $products = Product::with([
+        'category:CategoryId,CategoryName',
+        'subcategory:SubCategoryId,SubCategoryName'
+    ])
+    ->select('ProductId','Name','Price','Stock','CategoryId','SubCategoryId')
+    ->limit(10)   //  HARD LIMIT FOR TEST
+    ->get();
 
-        return view('admin.products', compact('products'));
-    }
+    return view('admin.products', compact('products'));
+}
 
     // Show the create product form //
 public function createProduct() {
@@ -66,10 +66,46 @@ public function showOrders()
     return view('admin.orders', compact('orders'));
 }
 
-public function showDashboard()
+public function editProduct($ProductId)
+    {
+        $product = Product::findOrFail($ProductId); // fetch the product
+        return view('admin.products.edit', compact('product'));
+    }
+
+    // Optional: handle the form submission to update
+public function updateProduct(Request $request, $ProductId)
 {
-    return view('admin.dashboard');
+    $product = Product::findOrFail($ProductId);
+
+    // Validate inputs
+    $request->validate([
+        'name' => 'required|string|max:255',
+        'price' => 'required|numeric',
+        'stock' => 'required|integer',
+        'Image' => 'nullable|image|max:2048',
+    ]);
+
+    // Update fields
+    $product->Name = $request->name;
+    $product->Price = $request->price;
+    $product->Stock = $request->stock;
+
+    // Optional: update image if uploaded
+    if ($request->hasFile('Image')) {
+        $path = $request->file('Image')->store('products', 'public');
+        $product->Image = $path;
+    }
+
+    $product->save(); // Save to database
+
+    return redirect()->route('admin.products')->with('success', 'Product updated successfully!');
 }
+
+ public function showDashboard()
+    {
+        return view('admin.dashboard');
+    }
+
 
 }
 
