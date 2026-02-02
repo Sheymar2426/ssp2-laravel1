@@ -81,7 +81,7 @@ Route::middleware(['auth', config('jetstream.auth_session'), 'verified'])->group
     Route::post('/admin/products/update/{ProductId}', [AdminController::class, 'updateProduct'])
     ->name('admin.products.update');
 
-    Route::get('/products/delete/{ProductId}', [AdminController::class,'deleteProduct'])->name('admin.products.delete');
+    Route::delete('/products/delete/{ProductId}', [AdminController::class,'deleteProduct'])->name('admin.products.delete');
 
 });
 

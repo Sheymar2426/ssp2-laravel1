@@ -16,7 +16,7 @@ class AdminController extends Controller
         'subcategory:SubCategoryId,SubCategoryName'
     ])
     ->select('ProductId','Name','Price','Stock','CategoryId','SubCategoryId')
-    ->limit(10)   //  HARD LIMIT FOR TEST
+    ->limit(20)   //  HARD LIMIT FOR TEST
     ->get();
 
     return view('admin.products', compact('products'));
@@ -99,6 +99,14 @@ public function updateProduct(Request $request, $ProductId)
     $product->save(); // Save to database
 
     return redirect()->route('admin.products')->with('success', 'Product updated successfully!');
+}
+
+public function deleteProduct($ProductId)
+{
+    $product = \App\Models\Product::findOrFail($ProductId);
+    $product->delete(); // Delete from database
+
+    return redirect()->route('admin.products')->with('success', 'Product deleted successfully!');
 }
 
  public function showDashboard()
